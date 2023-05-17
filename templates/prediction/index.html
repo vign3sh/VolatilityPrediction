@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div 
+    {% if not allstocks %}class="col-md-10" {% endif %}
+    {% if allstocks %}class="col-md-12" {% endif %}>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="">Volatility Model</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Predict
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    {% if not allstocks %}
+    <div class="col-md-2">
+        <a href="{% url 'train'%}" class="btn btn-primary">Retrain models</a>
+      </div>
+    {% endif %}
+    
+  </div>
+
+  <div class="container">
+    {% include 'partials/_messages.html' %}
+    </div>
+    
+<div class="app-table">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        
+        <th>Index Name</th>
+        {% for day in days %}
+        <th>{{day}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for stock in stocknames %}
+      <tr>
+        <td>{{stock.0}}</td>
+        <td>{{stock.1}}</td>
+        <td>{{stock.2}}</td>
+        <td>{{stock.3}}</td>
+        <td>{{stock.4}}</td>
+        <td>{{stock.5}}</td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div id="stock_recommendation">
+  
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <canvas id="linechart1" width="400" height="400"></canvas>
+      </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <canvas id="linechart" width="400" height="400"></canvas>
+        </div>
+</div>
+
+</div>
+
+
+{{ prediction|json_script:"prediction" }}
+{{ days|json_script:"days" }}
+{{ returns|json_script:"returns" }}
+{{ days1|json_script:"days1" }}
+{{ stocknames|json_script:"stocknames" }}
+
+
+
+<script src="{% static 'js/volatility.js' %}"></script>
+{% endblock content %}

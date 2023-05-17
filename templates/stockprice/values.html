@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="">Stock Price</a>
+          </li>
+          
+        </ol>
+      </nav>
+    </div>
+    
+  </div>
+
+  <div class="container">
+    {% include 'partials/_messages.html' %}
+    </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+      
+        <canvas id="linechart1" width="400" height="400"></canvas>
+      </div>
+        
+        
+</div>
+<br /> 
+<div class="row">
+    <div class="col-md-12">
+      
+        <canvas id="linechart" width="400" height="400"></canvas>
+      </div>
+
+
+</div>
+
+
+{{ returns|json_script:"returns" }}
+{{ price|json_script:"price" }}
+{{ days1|json_script:"days1" }}
+
+
+
+<script src="{% static 'js/stocks.js' %}"></script>
+{% endblock content %}
