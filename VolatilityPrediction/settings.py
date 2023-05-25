@@ -23,9 +23,9 @@ MODEL_DIR = os.path.join(BASE_DIR, 'prediction/models')
 SECRET_KEY = 'django-insecure-2n@h^i-f@54$$xt(z-i$2+@y%9$)%u7npirhxd#nr$u7aj#sgo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
