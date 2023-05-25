@@ -1,0 +1,1 @@
+web: gunicorn VolatilityPrediction.wsgi --log-file -

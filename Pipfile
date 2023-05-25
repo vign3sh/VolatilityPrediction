@@ -12,6 +12,8 @@ arch = "*"
 django = "*"
 joblib = "*"
 djangorestframework = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 ipykernel = "*"
