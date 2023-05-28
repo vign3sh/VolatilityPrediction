@@ -35,15 +35,15 @@ def index(request):
         date_range=250
         #dates=[i for i in range(250)]
         avg_price_list={}
-        stocks = request.POST['stocks'].split(',')
+        stocks = request.POST['stocks'].strip().split(',')
         stock_dict={}
         for stock in stocks:
+            stock=stock.strip()
             stock_name=yf.Ticker(stock).info['shortName']
             stock_dict[stock_name]=stock
 
         returns={}
         for stockname,stock in stock_dict.items():
-           
             # Wrangle the data
             df=wrangle_data(stock)
             close_price=df['Close'].dropna()

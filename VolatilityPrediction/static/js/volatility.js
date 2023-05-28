@@ -108,15 +108,6 @@
       
   };
 
-  const setdata = () => {
-
-    most_volatile_index = stocknames[stocknames.length - 1][0];
-    least_volatile_index = stocknames[0][0];
-    const myDiv = document.getElementById("stock_recommendation");
-    //console.log(most_volatile_index);
-    myDiv.innerHTML =  least_volatile_index + " is the  least volatile index, is recommended for long term inestments.";
-
-  };
 
 var prediction = JSON.parse(document.getElementById('prediction').textContent);
 var dates = JSON.parse(document.getElementById('days').textContent);

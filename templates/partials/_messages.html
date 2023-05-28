@@ -1,8 +1,9 @@
 {% if messages %}
 <div class="messages">
     {% for message in messages %}
-    <div{% if message.tags %} class="alert alert-sm alert-{{ message.tags }}"{% endif %}>
-        {{ message }}
+    <div{% if message.tags %} class="alert alert-sm alert-{{ message.tags }}"{% endif %} role="alert">
+        {{message}}
+        <button style="float: right; width: 3px;" type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true"></button>
     </div>
     {% endfor %}
 </ul>

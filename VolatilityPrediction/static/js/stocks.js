@@ -88,7 +88,7 @@ const renderChart = (data, labels, months, indexname, title, ylabel, xlabel) => 
       Object.keys(category_data),
       Object.values(category_data),
     ];
-  renderChart(data, labels, dates, 'linechart','Returns(250 days)','Daily Returns(%)', 'Days');
+  renderChart(data, labels, dates, 'linechart','Returns(1 year)','Daily Returns(%)', 'Days');
   };
   
   const getChartData1 = (returns,dates) => {        
@@ -97,7 +97,7 @@ const renderChart = (data, labels, months, indexname, title, ylabel, xlabel) => 
       Object.keys(category_data),
       Object.values(category_data),
     ];
-  renderChart(data, labels, dates, 'linechart1','Stock Price(250 days)', 'Daily Stock Price', 'Days');
+  renderChart(data, labels, dates, 'linechart1','Stock Price(1 year)', 'Daily Stock Price', 'Days');
   };
 
 

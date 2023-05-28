@@ -20,7 +20,7 @@ from .model_load import GarchModel
 # Base Page for pretrained models
 def index(request):
     stocks={'S&P 500':'^GSPC', 'Sensex':'^BSESN', 'Dow Jones':'^DJI', 'Nikkie 255':'^N225', 'NASDAQ':'^IXIC'}
-
+    messages.success(request, 'Click on Retrain models to get latest predictions')
     if request.method == 'GET':
         dates=[i*5 for i in range(0,11)]
         prediction={}
@@ -106,13 +106,14 @@ def allstocks(request):
     if (request.method == 'GET'):
         return render(request, 'prediction/allstocks.html')
     elif (request.method == 'POST'):
-        stocks = request.POST['stocks'].split(',')
+        stocks = request.POST['stocks'].strip().split(',')
         stock_dict={}
         prediction={}
         avg_price_list={}
         sorted_pred=[]
         dates=[i*5 for i in range(0,11)]
         for stock in stocks:
+            stock=stock.strip()
             stockname=yf.Ticker(stock).info['shortName']
             stock_dict[stockname]=stock
             model_shop = GarchModel(ticker=stock)
@@ -162,67 +163,6 @@ def allstocks(request):
         messages.success(request, html_value)
         return render(request, 'prediction/index.html',context)
 
-"""def pred_vol_summary(request):
-
-    stocks = json.loads(request.GET.get('stocknames'))
-    prediction={}
-    for stockname,stock in stocks.items():
-        # Get the Models
-        model_shop = GarchModel(ticker=stock)
-        
-        #Load the model
-        
-        retrain=model_shop.load()
-        if retrain:
-            # Wrangle the data
-            model_shop.wrangle_data()
-            # Fit GARCH(1,1) model to data
-            model_shop.fit(p=1, q=1)
-
-        pred=model_shop.predict_volatility(horizon=5)
-        pred_values=[]
-        for value in pred.values():
-            pred_values.append(round(value,3))
-
-        prediction[stockname] = pred_values
-        days=[]
-        for d in pred.keys():
-            d=d[:d.index('T')]
-            date_obj = datetime.strptime(d, '%Y-%m-%d')
-            formatted_date = date_obj.strftime('%b %d, %Y')
-            days.append(formatted_date)
-    
-    return JsonResponse({'prediction': prediction,'days':days}, safe=False)
-
-        
-
-def return_summary(request):
-    # Get the Models
-    stocks = json.loads(request.GET.get('stocknames'))  
-    st=['SPY','^BSESN', '^DJI', '^N225', '^IXIC']
-    returns={}
-    dates=[i*5 for i in range(0,11)]
-    counter=0
-    for stockname,stock in stocks.items():
-        # Get the Models
-        print('counter:',counter)
-        counter+=1
-        count_val=st[0]
-        model_shop = GarchModel(ticker=count_val)
-        st.pop(0)
-        # Wrangle the data
-        model_shop.wrangle_data()
-        data=model_shop.data
-        val=list(data.tail(50).values)
-
-        # Find average of val for every 5 days
-        avg_val=[]
-        avg_val.append(round(val[0],3))
-        for i in range(0,50,5):
-            avg_val.append(round(sum(val[i:i+5])/5,3))
-        returns[count_val]=avg_val
-    
-    return JsonResponse({'returns': returns,'dates':dates}, safe=False)"""
 
 
 
