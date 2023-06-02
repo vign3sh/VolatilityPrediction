@@ -11,6 +11,7 @@ yfinance = "*"
 arch = "*"
 django = "*"
 joblib = "*"
+djangorestframework = "*"
 whitenoise = "*"
 gunicorn = "*"
 
