@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "VolatilityPrediction/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "VolatilityPrediction/wsgi.py"
+      }
+    ]
+}
