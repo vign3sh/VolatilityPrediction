@@ -4,18 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pandas = "*"
-matplotlib = "*"
-requests = "*"
-yfinance = "*"
-arch = "*"
 django = "*"
-joblib = "*"
+yfinance = "*"
 whitenoise = "*"
 gunicorn = "*"
+joblib = "*"
+arch = "*"
 
 [dev-packages]
-ipykernel = "*"
 
 [requires]
 python_version = "3.9"
